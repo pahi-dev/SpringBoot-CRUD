@@ -22,6 +22,11 @@ public class EmployeeController {
         return employeeService.getEmployee(id);
     }
 
+    @GetMapping("/api/v1/employees")
+    public List<Employee> getAllEmployees() {
+        return employeeService.getAllEmployees();
+    }
+
     @DeleteMapping("/api/v1/{id}")
     private Employee deleteEmployee(@PathVariable Long id) throws EmployeeNotFoundException {
         return employeeService.deleteEmployee(id);
@@ -31,5 +36,7 @@ public class EmployeeController {
     private Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
         return employeeService.updateEmployee(id, employee);
     }
+
+
 
 }
