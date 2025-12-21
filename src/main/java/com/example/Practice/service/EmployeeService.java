@@ -21,13 +21,18 @@ public class EmployeeService {
         return employeeRepository.findById(id).orElse(null);
     }
 
-public Employee deleteEmployee(Long id) throws EmployeeNotFoundException {
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
+
+
+    public Employee deleteEmployee(Long id) throws EmployeeNotFoundException {
     Employee employee = employeeRepository.findById(id)
             .orElseThrow(() -> new EmployeeNotFoundException("Employee Not Found with ID: " + id));
 
     employeeRepository.delete(employee);
     return employee;
-}
+    }
 
 
     public Employee updateEmployee(Long id, Employee employeeDetails) {
