@@ -5,7 +5,9 @@ import com.example.Practice.repository.EmployeeRepository;
 import com.example.Practice.utills.EmployeeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @Service
@@ -24,6 +26,14 @@ public class EmployeeService {
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
+
+
+
+    public Page<Employee> getEmployeesWithPagination(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return employeeRepository.findAll(pageable);
+    }
+
 
 
     public Employee deleteEmployee(Long id) throws EmployeeNotFoundException {
