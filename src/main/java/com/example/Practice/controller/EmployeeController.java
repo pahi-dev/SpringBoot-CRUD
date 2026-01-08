@@ -11,9 +11,10 @@ import java.util.List;
 
 @RestController
 public class EmployeeController {
-
     @Autowired
     EmployeeService employeeService;
+
+
 
     @PostMapping("/api/v1/add")
     private Employee addEmployee(@RequestBody Employee employee) {
@@ -30,6 +31,8 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
+
+
     @GetMapping("/api/v1/employees/pagination")
     public Page<Employee> getEmployeesWithPagination(
             @RequestParam(defaultValue = "0") int page,
@@ -37,7 +40,6 @@ public class EmployeeController {
     ) {
         return employeeService.getEmployeesWithPagination(page, size);
     }
-
 
     @DeleteMapping("/api/v1/{id}")
     private Employee deleteEmployee(@PathVariable Long id) throws EmployeeNotFoundException {
