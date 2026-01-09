@@ -13,9 +13,6 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
-
-
-
     @PostMapping("/api/v1/add")
     private Employee addEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
@@ -31,16 +28,6 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-
-
-    @GetMapping("/api/v1/employees/pagination")
-    public Page<Employee> getEmployeesWithPagination(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size
-    ) {
-        return employeeService.getEmployeesWithPagination(page, size);
-    }
-
     @DeleteMapping("/api/v1/{id}")
     private Employee deleteEmployee(@PathVariable Long id) throws EmployeeNotFoundException {
         return employeeService.deleteEmployee(id);
@@ -51,6 +38,11 @@ public class EmployeeController {
         return employeeService.updateEmployee(id, employee);
     }
 
-
-
+    @GetMapping("/api/v1/employees/pagination")
+    public Page<Employee> getEmployeesWithPagination(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
+    ) {
+        return employeeService.getEmployeesWithPagination(page, size);
+    }
 }
